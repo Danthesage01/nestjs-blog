@@ -1,0 +1,44 @@
+import {
+ Controller, Get, Post, Patch,
+ Put, Delete, Param, Query, Body,
+
+ ParseIntPipe, DefaultValuePipe, ValidationPipe
+} from '@nestjs/common';
+import { Request } from 'express';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { GetUsersParamDto } from './dtos/get-users-param.dto';
+import { PatchUserDto } from './dtos/patch-user.dto';
+@Controller('users')
+export class UsersController {
+
+ @Get('/{:id}')
+ public getUsers(
+  @Param() getUserParamDto: GetUsersParamDto,
+  @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+  @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number
+ ) {
+  console.log(getUserParamDto);
+
+
+  return "You sent a single get request to users endpoint"
+ }
+
+ @Post()
+ public createUsers(@Body() createUserDto: CreateUserDto) {
+  console.log(createUserDto);
+  console.log(typeof createUserDto);
+  console.log(createUserDto instanceof CreateUserDto);
+
+  return "You sent a post request to users endpoint"
+ }
+
+
+ @Patch()
+ public patchUser(@Body() patchUserDto: PatchUserDto) {
+  return "You sent a patch request to users endpoint"
+ }
+ @Delete()
+ public deleteUser() {
+  return "You sent a delete request to users endpoint"
+ }
+}
