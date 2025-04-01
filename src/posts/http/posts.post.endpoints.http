@@ -1,9 +1,9 @@
 POST http://localhost:6500/posts
 Content-Type: application/json
 {
- "title": "Title one",
+ "title": "Title three",
  "postType": "post",
- "slug": "new-with-nestjs",
+ "slug": "new-with-nestjs-three",
  "status": "draft",
  "content": "test content",
  "schema": "{\r\n    \"@context\": \"https:\/\/schema.org\",\r\n    \"@type\": \"Person\"\r\n  }",
@@ -12,6 +12,7 @@ Content-Type: application/json
  "metaOptions": 
     {
       "metaValue": "{\"sidebarEnabled\": true, \"footerActive\": true}"
-    }
+    },
+  "authorId": 1
 }
 

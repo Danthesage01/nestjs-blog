@@ -1,5 +1,5 @@
 import {
- IsArray, IsEnum, IsISO8601, IsJSON,
+ IsArray, IsEnum, IsIn, IsInt, IsISO8601, IsJSON,
  IsNotEmpty, IsOptional, IsString, IsUrl,
  Matches, MaxLength, MinLength, ValidateNested
 } from "class-validator";
@@ -118,4 +118,14 @@ export class CreatePostDto {
  @ValidateNested({ each: true })
  @Type(() => CreatePostMetaOptionsDto)
  metaOptions?: CreatePostMetaOptionsDto | null;
+
+
+ @ApiProperty({
+  type: 'integer',
+  required: true,
+  example: 1
+ })
+ @IsNotEmpty()
+ @IsInt()
+ authorId: number;
 }
