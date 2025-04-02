@@ -1,0 +1,2 @@
+DELETE http://localhost:6500/tags/soft-delete
+?id=3

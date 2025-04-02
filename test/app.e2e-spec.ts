@@ -17,9 +17,16 @@ describe('AppController (e2e)', () => {
   });
 
   it('/ (GET)', () => {
+    console.log(process.env.NODE_ENV);
+    console.log(process.env.S3_BUCKET);
     return request(app.getHttpServer())
       .get('/')
       .expect(200)
-      .expect('Hello World!');
+      .expect('Welcome to our Blog API!');
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/api/testing')
+      .expect(404)
   });
 });

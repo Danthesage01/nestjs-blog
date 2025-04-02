@@ -61,6 +61,7 @@ export class Post {
  })
  featuredImageUrl?: string;
 
+
  @Column({
   type: 'timestamp', // 'datetime' in mysql
   nullable: true,
@@ -83,7 +84,9 @@ export class Post {
 
 
  // Work on these in lecture on relationships
- @ManyToMany(() => Tag)
+ @ManyToMany(() => Tag, (tag) => tag.posts, {
+  eager: true
+ })
  @JoinTable()
  tags?: Tag[];
 }

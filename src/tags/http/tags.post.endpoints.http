@@ -1,7 +1,7 @@
 POST http://localhost:6500/tags
 Content-Type: application/json
 {
- "name": "typescript",
- "slug": "typescript",
- "description": "All posts typescript"
+ "name": "devops",
+ "slug": "devops",
+ "description": "All posts devops"
 }
