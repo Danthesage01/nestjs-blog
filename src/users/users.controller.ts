@@ -46,16 +46,33 @@ export class UsersController {
   return this.usersService.findAll(getUserParamDto, limit, page)
  }
 
+
+ @ApiOperation({ summary: 'Register a user on the application' })
+ @ApiResponse({
+  status: 201,
+  description: 'User created successfully'
+ })
  @Post()
  public createUsers(@Body() createUserDto: CreateUserDto) {
   return this.usersService.createUser(createUserDto)
  }
 
 
+ @ApiOperation({ summary: 'Update a user on the application' })
+ @ApiResponse({
+  status: 200,
+  description: 'User updated successfully'
+ })
  @Patch()
  public patchUser(@Body() patchUserDto: PatchUserDto) {
   console.log(patchUserDto);
  }
+
+ @ApiOperation({ summary: 'Delete a user on the application' })
+ @ApiResponse({
+  status: 200,
+  description: 'User deleted successfully'
+ })
  @Delete()
  public deleteUser() {
   return "You sent a delete request to users endpoint"

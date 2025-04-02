@@ -6,6 +6,9 @@ import { Repository } from 'typeorm';
 import { MetaOption } from 'src/meta-options/meta-option.entity';
 import { CreatePostDto } from '../dtos/create-post.dto';
 import { User } from 'src/users/user.entity';
+import { TagsService } from 'src/tags/providers/tags.service';
+import { PatchUserDto } from 'src/users/dtos/patch-user.dto';
+import { PatchPostDto } from '../dtos/patch-post.dto';
 
 @Injectable()
 export class PostsService {
@@ -14,6 +17,8 @@ export class PostsService {
   * Inject metaOptionsRepository
   */
   private readonly usersService: UsersService,
+
+  private readonly tagsService: TagsService,
 
   @InjectRepository(Post)
   private readonly postsRepository: Repository<Post>,
@@ -54,6 +59,7 @@ export class PostsService {
 
  public async create(createPostDto: CreatePostDto) {
   const author = await this.usersService.findOneById(createPostDto.authorId);
+  const tags = await this.tagsService.findMultipleTags(createPostDto.tags || []);
   if (!author) throw new Error("Author not found");
 
   const { authorId, metaOptions, ...postData } = createPostDto;
@@ -69,12 +75,40 @@ export class PostsService {
   let post = this.postsRepository.create({
    ...postData,
    author,
-   metaOptions: metaOptionsEntity
+   metaOptions: metaOptionsEntity,
+   tags
   });
 
   return await this.postsRepository.save(post);
  }
 
+ /**
+ *Update a post
+ * 
+ */
+ public async update(patchPostDto: PatchPostDto) {
+  let tags = await this.tagsService.findMultipleTags(patchPostDto.tags || [])
+
+  let post = await this.postsRepository.findOneBy({
+   id: patchPostDto.id,
+  })
+
+  if (!post) {
+   throw new Error('Post not found'); // or handle it in a way that suits your application
+  }
+
+  post.title = patchPostDto.title ?? post?.title
+  post.content = patchPostDto.content ?? post?.content
+  post.status = patchPostDto.status ?? post?.status
+  post.postType = patchPostDto.postType ?? post?.postType
+  post.slug = patchPostDto.slug ?? post?.slug
+  post.featuredImageUrl = patchPostDto.featuredImageUrl ?? post?.featuredImageUrl
+  post.publishedOn = patchPostDto.publishedOn ?? post?.publishedOn
+
+  post.tags = tags
+
+  return await this.postsRepository.save(post)
+ }
  /**
  *Finding all posts
  * 
@@ -83,7 +117,8 @@ export class PostsService {
   let posts = await this.postsRepository.find({
    relations: {
     metaOptions: true,
-    author: true
+    author: true,
+    tags: true
    }
   })
   console.log(posts);

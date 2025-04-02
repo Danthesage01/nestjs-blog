@@ -38,7 +38,7 @@ export class PostsController {
  })
  @Patch()
  public updatePost(@Body() patchPostDto: PatchPostDto) {
-  console.log(patchPostDto);
+  return this.postsService.update(patchPostDto)
  }
 
  @ApiOperation({ summary: 'deletes a blog post and cascade to meta options' })
