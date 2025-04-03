@@ -152,6 +152,11 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
+                                <a href="#createMany" >createMany</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
                                 <a href="#createUser" >createUser</a>
                             </li>
                             <li>
@@ -160,6 +165,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOneById" >findOneById</a>
                             </li>
                         </ul>
@@ -180,12 +186,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(usersRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+<code>constructor(usersRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, configService: ConfigService, profileConfiguration: ConfigType<>, datasource: DataSource, userCreateManyProvider: <a href="../entitys/User.html" target="_self">UsersCreateManyProvider</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/users/providers/users.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/users/providers/users.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -228,6 +234,54 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>profileConfiguration</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigType&lt;&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>datasource</td>
+                                                  
+                                                        <td>
+                                                                    <code>DataSource</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userCreateManyProvider</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/User.html" target="_self" >UsersCreateManyProvider</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -242,6 +296,78 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createMany"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>createMany</b></span>
+                        <a href="#createMany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createMany(createManyUsersDto: <a href="../entitys/User.html" target="_self">CreateManyUsersDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/users/providers/users.service.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Create many user - Transaction in nestjs</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createManyUsersDto</td>
+                                            <td>
+                                                            <code><a href="../entitys/User.html" target="_self" >CreateManyUsersDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -265,8 +391,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/users/providers/users.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/users/providers/users.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -336,8 +462,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/users/providers/users.service.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/users/providers/users.service.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -399,7 +525,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>{}</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
                             <div class="io-description">
@@ -416,6 +542,7 @@
                     <a name="findOneById"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
                         <span ><b>findOneById</b></span>
                         <a href="#findOneById"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -424,15 +551,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/users/providers/users.service.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="121"
+                                    class="link-to-prism">src/users/providers/users.service.ts:121</a></div>
                         </td>
                     </tr>
 
@@ -457,7 +584,7 @@
                                         <tr>
                                                 <td>id</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
 
                                             <td>
@@ -470,7 +597,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>{ id: number; firstName: string; lastName: string; }</code>
+                            <b>Returns : </b>    <code>unknown</code>
 
                         </div>
                             <div class="io-description">
@@ -486,13 +613,18 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { forwardRef, Inject, Injectable } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UsersCreateManyProvider } from &#x27;./users-create-many.provider&#x27;;
+import { CreateUserDto } from &#x27;./../dtos/create-user.dto&#x27;;
+import { BadRequestException, forwardRef, HttpException, HttpStatus, Inject, Injectable, RequestTimeoutException } from &quot;@nestjs/common&quot;;
 import { GetUsersParamDto } from &quot;../dtos/get-users-param.dto&quot;;
 import { AuthService } from &quot;src/auth/providers/auth.service&quot;;
-import { Repository } from &quot;typeorm&quot;;
+import { DataSource, Repository } from &quot;typeorm&quot;;
 import { User } from &quot;../user.entity&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
-import { CreateUserDto } from &quot;../dtos/create-user.dto&quot;;
+import { ConfigService, ConfigType } from &quot;@nestjs/config&quot;;
+import profileConfig from &quot;../config/profile.config&quot;;
+import { error } from &quot;console&quot;;
+import { CreateManyUsersDto } from &#x27;../dtos/create-many-users.dto&#x27;;
 
 
 /**
@@ -500,67 +632,130 @@ import { CreateUserDto } from &quot;../dtos/create-user.dto&quot;;
  */
 @Injectable()
 export class UsersService {
- /**
-* The constructor to handle dependency injections
-*/
- constructor(
-  @InjectRepository(User)
-  private usersRepository: Repository&lt;User&gt;,
-  @Inject(forwardRef(() &#x3D;&gt; AuthService))
-  private readonly authService: AuthService
- ) { }
-
- /**
- * The method to create a user from the database
+  /**
+ * The constructor to handle dependency injections
  */
- public async createUser(createUserDto: CreateUserDto) {
-  // Check is user exists with same email
-  const existingUser &#x3D; await this.usersRepository.findOne({
-   where: {
-    email: createUserDto.email
-   }
-  })
-  // Handle exception
-  // Create a new user
-  let newUser &#x3D; this.usersRepository.create(createUserDto)
-  newUser &#x3D; await this.usersRepository.save(newUser)
+  constructor(
+    @InjectRepository(User)
+    private usersRepository: Repository&lt;User&gt;,
+    @Inject(forwardRef(() &#x3D;&gt; AuthService))
+    private readonly authService: AuthService,
+    /**
+     * Injecting config service
+      */
+    private readonly configService: ConfigService,
 
-  return newUser
- }
+    @Inject(profileConfig.KEY)
+    private readonly profileConfiguration: ConfigType&lt;typeof profileConfig&gt;,
 
- /**
- * The method to get all the users from the database
- */
- public findAll(
-  getUserParamDto: GetUsersParamDto,
-  limit: number,
-  page: number
+    // Inject Datasource
+    private readonly datasource: DataSource,
 
- ) {
-  const isAuth &#x3D; this.authService.isAuth()
-  console.log(isAuth);
-  return [
-   {
-    firstName: &quot;John&quot;,
-    lastName: &quot;Doe&quot;,
-   },
-   {
-    firstName: &quot;Ken&quot;,
-    lastName: &quot;Doe&quot;,
-   },
-  ]
- }
+    /**
+    * Injecting user create many providers
+     */
+    private readonly userCreateManyProvider: UsersCreateManyProvider
+  ) { }
 
- /**
-* The method to get a single user from the database
-*/
- public findOneById(id: string) {
-  return {
-   id: 123,
-   firstName: &quot;Ken&quot;,
-   lastName: &quot;Doe&quot;,
+  /**
+  * The method to create a user from the database
+  */
+  public async createUser(createUserDto: CreateUserDto) {
+
+    let existingUser: User | null;
+    try {
+      // Check is user exists with same email
+      existingUser &#x3D; await this.usersRepository.findOne({
+        where: {
+          email: createUserDto.email
+        }
+      })
+
+    } catch (error) {
+      throw new RequestTimeoutException(&#x27;Unable to process your request at the moment please try later&#x27;, {
+        description: &#x27;Error connecting to the database&#x27;
+      })
+    }
+    // Handle exception
+    if (existingUser) {
+      throw new BadRequestException(&#x27;User already exist&#x27;)
+    }
+    // Create a new user
+    let newUser &#x3D; this.usersRepository.create(createUserDto)
+    try {
+      newUser &#x3D; await this.usersRepository.save(newUser)
+    } catch (error) {
+      throw new RequestTimeoutException(&#x27;Unable to process your request at the moment please try later&#x27;, {
+        description: &#x27;Error connecting to the database&#x27;
+      })
+    }
+
+    return newUser
   }
- }
+
+  /**
+  * The method to get all the users from the database
+  */
+  public findAll(
+    getUserParamDto: GetUsersParamDto,
+    limit: number,
+    page: number
+
+  ) {
+
+    throw new HttpException({
+      status: HttpStatus.MOVED_PERMANENTLY,
+      error: &#x27;The API endpoint does not exist&#x27;,
+      fileName: &#x27;users.service.ts&#x27;,
+      lineNumber: 88
+    },
+      HttpStatus.MOVED_PERMANENTLY
+      , {
+        cause: new Error(),
+        description: &#x27;Occurred because the API endpoint was permanently moved&#x27;
+      })
+    // const environment &#x3D; this.configService.get&lt;string&gt;(&#x27;S3_BUCKET&#x27;)
+    // console.log(environment);
+    // console.log(this.profileConfiguration);
+    // const isAuth &#x3D; this.authService.isAuth()
+    // return [
+    //   {
+    //     firstName: &quot;John&quot;,
+    //     lastName: &quot;Doe&quot;,
+    //   },
+    //   {
+    //     firstName: &quot;Ken&quot;,
+    //     lastName: &quot;Doe&quot;,
+    //   },
+    // ]
+  }
+
+  /**
+ * The method to get a single user from the database
+ */
+  public async findOneById(id: number) {
+    let user: User | null;
+    try {
+      user &#x3D; await this.usersRepository.findOneBy({
+        id
+      })
+    } catch (error) {
+      throw new RequestTimeoutException(&#x27;Unable to process your request at the moment please try later&#x27;, {
+        description: &#x27;Error connecting to the database&#x27;
+      })
+    }
+    if (!user) {
+      throw new BadRequestException(&#x27;The user id does not exist&#x27;)
+    }
+    return user
+  }
+
+  /**
+   * Create many user - Transaction in nestjs
+   */
+  public async createMany(createManyUsersDto: CreateManyUsersDto) {
+    return await this.userCreateManyProvider.createMany(createManyUsersDto)
+  }
 }</code></pre>
     </div>
 

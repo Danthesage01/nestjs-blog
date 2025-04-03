@@ -251,13 +251,6 @@
 
 
 
-        <p class="comment">
-            <h3>Description</h3>
-        </p>
-        <p class="comment">
-            <p>Initialize app modules</p>
-
-        </p>
 
 
         <div class="container-fluid module">
@@ -321,29 +314,41 @@ import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
 import { User } from &#x27;./users/user.entity&#x27;;
 import { TagsModule } from &#x27;./tags/tags.module&#x27;;
 import { MetaOptionsModule } from &#x27;./meta-options/meta-options.module&#x27;;
-
+import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
+import appConfig from &quot;./config/app.config&quot;
+import databaseConfig from &quot;./config/database.config&quot;
+import environmentValidation from &#x27;./config/environment.validation&#x27;;
 /**  
 * Initialize app modules
 */
 
 
+const ENV &#x3D; process.env.NODE_ENV
+
 @Module({
   imports: [UsersModule,
     PostsModule,
     AuthModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      // envFilePath: [&#x27;.env.development&#x27;],
+      envFilePath: !ENV ? &quot;.env&quot; : &#x60;.env.${ENV}&#x60;,
+      load: [appConfig, databaseConfig],
+      validationSchema: environmentValidation
+    }),
     TypeOrmModule.forRootAsync({
-      imports: [],
-      inject: [],
-      useFactory: () &#x3D;&gt; ({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) &#x3D;&gt; ({
         type: &quot;postgres&quot;,
         // entities: [User],
-        autoLoadEntities: true,
-        synchronize: true,
-        port: 5432,
-        username: &#x27;postgres&#x27;,
-        password: &#x27;12345678&#x27;,
-        host: &#x27;localhost&#x27;,
-        database: &#x27;nestjs-blog&#x27;
+        autoLoadEntities: configService.get(&#x27;database.autoLoadEntities&#x27;),
+        synchronize: configService.get(&#x27;database.synchronize&#x27;),
+        port: +configService.get(&#x27;database.port&#x27;),
+        username: configService.get(&#x27;database.user&#x27;),
+        password: configService.get(&#x27;database.password&#x27;),
+        host: configService.get(&#x27;database.host&#x27;),
+        database: configService.get(&#x27;database.name&#x27;)
       }),
     }),
     TagsModule,

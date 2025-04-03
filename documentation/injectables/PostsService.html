@@ -149,7 +149,23 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#deletePost" >deletePost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllPosts" >findAllPosts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findSinglePost" >findSinglePost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#update" >update</a>
                             </li>
                         </ul>
                     </td>
@@ -169,12 +185,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>, postsRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, metaOptionsRepository: <a href="../entitys/MetaOption.html" target="_self">Repository&lt;MetaOption&gt;</a>)</code>
+<code>constructor(usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>, tagsService: <a href="../injectables/TagsService.html" target="_self">TagsService</a>, postsRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, metaOptionsRepository: <a href="../entitys/MetaOption.html" target="_self">Repository&lt;MetaOption&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/posts/providers/posts.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/posts/providers/posts.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -196,6 +212,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/UsersService.html" target="_self" >UsersService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>tagsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TagsService.html" target="_self" >TagsService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -264,8 +292,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/posts/providers/posts.service.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -317,9 +345,82 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="deletePost"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>deletePost</b></span>
+                        <a href="#deletePost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deletePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>delete a post</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findAllPosts"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
                         <span ><b>findAllPosts</b></span>
                         <a href="#findAllPosts"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -328,15 +429,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllPosts(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findAllPosts(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/posts/providers/posts.service.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:146</a></div>
                         </td>
                     </tr>
 
@@ -361,7 +462,7 @@
                                         <tr>
                                                 <td>userId</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
 
                                             <td>
@@ -374,7 +475,151 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>{}</code>
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findSinglePost"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>findSinglePost</b></span>
+                        <a href="#findSinglePost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findSinglePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="162"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:162</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Finding a post</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(patchPostDto: <a href="../classes/PatchPostDto.html" target="_self">PatchPostDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Update a post</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>patchPostDto</td>
+                                            <td>
+                                                            <code><a href="../classes/PatchPostDto.html" target="_self" >PatchPostDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
 
                         </div>
                             <div class="io-description">
@@ -390,13 +635,18 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Injectable } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Body, Injectable, RequestTimeoutException } from &#x27;@nestjs/common&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { UsersService } from &#x27;src/users/providers/users.service&#x27;;
-import { CreatePostDto } from &#x27;unused/create-post.dto&#x27;;
 import { Post } from &#x27;../post.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { MetaOption } from &#x27;src/meta-options/meta-option.entity&#x27;;
+import { CreatePostDto } from &#x27;../dtos/create-post.dto&#x27;;
+import { User } from &#x27;src/users/user.entity&#x27;;
+import { TagsService } from &#x27;src/tags/providers/tags.service&#x27;;
+import { PatchUserDto } from &#x27;src/users/dtos/patch-user.dto&#x27;;
+import { PatchPostDto } from &#x27;../dtos/patch-post.dto&#x27;;
+import { Tag } from &#x27;src/tags/tag.entity&#x27;;
 
 @Injectable()
 export class PostsService {
@@ -405,6 +655,8 @@ export class PostsService {
   * Inject metaOptionsRepository
   */
   private readonly usersService: UsersService,
+
+  private readonly tagsService: TagsService,
 
   @InjectRepository(Post)
   private readonly postsRepository: Repository&lt;Post&gt;,
@@ -418,48 +670,150 @@ export class PostsService {
  *Creating new posts
  * 
  */
+ // public async create(createPostDto: CreatePostDto) {
+
+ //  const author &#x3D; await this.usersService.findOneById(createPostDto.authorId)
+
+ //  let metaOptions: MetaOption | undefined;
+
+ //  if (createPostDto.metaOptions) {
+ //   metaOptions &#x3D; this.metaOptionsRepository.create({
+ //    metaValue: createPostDto.metaOptions.metaValue,
+ //   });
+
+ //   metaOptions &#x3D; await this.metaOptionsRepository.save(metaOptions);
+ //  }
+
+ //  console.log(createPostDto, &quot;service&quot;);
+
+ //  let post &#x3D; this.postsRepository.create({
+ //   ...createPostDto,
+ //   author: { id: author?.id } as User
+ //  });
+
+
+ //  return await this.postsRepository.save(post);
+ // }
+
  public async create(createPostDto: CreatePostDto) {
-  // Create the metaOptions first if they exist
-  let metaOptions &#x3D; createPostDto.metaOptions
-   ? this.metaOptionsRepository.create(createPostDto.metaOptions)
-   : null;
+  const author &#x3D; await this.usersService.findOneById(createPostDto.authorId);
+  const tags &#x3D; await this.tagsService.findMultipleTags(createPostDto.tags || []);
+  if (!author) throw new Error(&quot;Author not found&quot;);
 
-  if (metaOptions) {
-   await this.metaOptionsRepository.save(metaOptions);
+  const { authorId, metaOptions, ...postData } &#x3D; createPostDto;
+
+  let metaOptionsEntity &#x3D; metaOptions
+   ? this.metaOptionsRepository.create(metaOptions)
+   : undefined;
+
+  if (metaOptionsEntity) {
+   await this.metaOptionsRepository.save(metaOptionsEntity);
   }
 
-  // Create the post
   let post &#x3D; this.postsRepository.create({
-   ...createPostDto,
+   ...postData,
+   author,
+   metaOptions: metaOptionsEntity,
+   tags
   });
-
-  // If meta options exist add them to post
-  if (metaOptions) {
-   post.metaOptions &#x3D; metaOptions;
-  }
 
   return await this.postsRepository.save(post);
  }
 
  /**
+ *Update a post
+ * 
+ */
+ public async update(patchPostDto: PatchPostDto) {
+  let tags: Tag[] | null
+  let post: Post | null
+
+  try {
+
+   tags &#x3D; await this.tagsService.findMultipleTags(patchPostDto.tags || [])
+
+
+  } catch (error) {
+   throw new RequestTimeoutException(&#x27;Unable to process your request at the moment please try later&#x27;, {
+    description: &#x27;Error connecting to the database&#x27;
+   })
+  }
+
+  if (!tags || tags.length !&#x3D;&#x3D; patchPostDto.tags?.length) {
+   throw new BadRequestException(&#x27;Please check your tag Ids and ensure they are correct&#x27;)
+  }
+
+  try {
+   post &#x3D; await this.postsRepository.findOneBy({
+    id: patchPostDto.id,
+   })
+  } catch (error) {
+   throw new RequestTimeoutException(&#x27;Unable to process your request at the moment please try later&#x27;, {
+    description: &#x27;Error connecting to the database&#x27;
+   })
+  }
+
+  if (!post) {
+   throw new BadRequestException(&#x27;Post ID not found&#x27;); // or handle it in a way that suits your application
+  }
+
+  post.title &#x3D; patchPostDto.title ?? post?.title
+  post.content &#x3D; patchPostDto.content ?? post?.content
+  post.status &#x3D; patchPostDto.status ?? post?.status
+  post.postType &#x3D; patchPostDto.postType ?? post?.postType
+  post.slug &#x3D; patchPostDto.slug ?? post?.slug
+  post.featuredImageUrl &#x3D; patchPostDto.featuredImageUrl ?? post?.featuredImageUrl
+  post.publishedOn &#x3D; patchPostDto.publishedOn ?? post?.publishedOn
+
+  post.tags &#x3D; tags
+
+  try {
+   await this.postsRepository.save(post)
+  } catch (error) {
+   throw new RequestTimeoutException(&#x27;Unable to process your request at the moment please try later&#x27;, {
+    description: &#x27;Error connecting to the database&#x27;
+   })
+  }
+  return post
+ }
+ /**
  *Finding all posts
  * 
  */
- public findAllPosts(userId: string) {
-  const user &#x3D; this.usersService.findOneById(userId)
-  return [
-   {
-    user,
-    title: &quot;Blog one&quot;,
-    content: &quot;We are here...&quot;,
-   },
-   {
-    user,
-    title: &quot;Blog two&quot;,
-    content: &quot;We are here...&quot;,
-   },
+ public async findAllPosts(userId: number) {
+  let posts &#x3D; await this.postsRepository.find({
+   relations: {
+    metaOptions: true,
+    author: true,
+    tags: true
+   }
+  })
+  console.log(posts);
+  return posts
+ }
 
-  ]
+ /**
+ *Finding a post
+ * 
+ */
+ public async findSinglePost(id: number) {
+  let post &#x3D; await this.postsRepository.findOneBy({
+   id
+  })
+  console.log(post, &quot;here single&quot;);
+  return post
+ }
+
+
+
+ /**
+ *delete a post
+ * 
+ */
+ public async deletePost(id: number) {
+  await this.postsRepository.delete(id)
+
+  return { deleted: true, id }
  }
 }
 </code></pre>
