@@ -9,9 +9,18 @@ import { User } from './users/user.entity';
 import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PaginationModule } from './common/pagination/pagination.module';
 import appConfig from "./config/app.config"
 import databaseConfig from "./config/database.config"
 import environmentValidation from './config/environment.validation';
+import { JwtModule } from '@nestjs/jwt';
+import jwtConfig from './auth/config/jwt.config';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
+import { AuthenticationGuard } from './auth/guards/authentication/authentication.guard';
+import { DataResponseInterceptor } from './common/interceptors/data-response/data-response.interceptor';
+import { UploadsModule } from './uploads/uploads.module';
+import { MailModule } from './mail/mail.module';
 /**  
 * Initialize app modules
 */
@@ -45,9 +54,21 @@ const ENV = process.env.NODE_ENV
         database: configService.get('database.name')
       }),
     }),
+    ConfigModule.forFeature(jwtConfig),
+    JwtModule.registerAsync(jwtConfig.asProvider()),
     TagsModule,
-    MetaOptionsModule],
+    MetaOptionsModule,
+    PaginationModule,
+    UploadsModule,
+    MailModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {
+    provide: APP_GUARD,
+    useClass: AuthenticationGuard,
+  }, {
+      provide: APP_INTERCEPTOR,
+      useClass: DataResponseInterceptor
+    },
+    AccessTokenGuard],
 })
 export class AppModule { }

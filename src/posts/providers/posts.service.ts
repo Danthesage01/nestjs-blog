@@ -1,3 +1,4 @@
+import { CreatePostProvider } from './create-post.provider';
 import { BadRequestException, Body, Injectable, RequestTimeoutException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersService } from 'src/users/providers/users.service';
@@ -10,6 +11,10 @@ import { TagsService } from 'src/tags/providers/tags.service';
 import { PatchUserDto } from 'src/users/dtos/patch-user.dto';
 import { PatchPostDto } from '../dtos/patch-post.dto';
 import { Tag } from 'src/tags/tag.entity';
+import { GetPostsDto } from '../dtos/get.posts.dto';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
+import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 
 @Injectable()
 export class PostsService {
@@ -27,61 +32,44 @@ export class PostsService {
 
   @InjectRepository(MetaOption)
   private readonly metaOptionsRepository: Repository<MetaOption>,
+
+  private readonly paginationProvider: PaginationProvider,
+
+  private readonly createPostProvider: CreatePostProvider
  ) { }
 
  /**
  *Creating new posts
  * 
  */
+ public async create(createPostDto: CreatePostDto, user: ActiveUserData) {
+
+  return await this.createPostProvider.create(createPostDto, user);
+ }
  // public async create(createPostDto: CreatePostDto) {
+ //  const author = await this.usersService.findOneById(createPostDto.authorId);
+ //  const tags = await this.tagsService.findMultipleTags(createPostDto.tags || []);
+ //  if (!author) throw new Error("Author not found");
 
- //  const author = await this.usersService.findOneById(createPostDto.authorId)
+ //  const { authorId, metaOptions, ...postData } = createPostDto;
 
- //  let metaOptions: MetaOption | undefined;
+ //  let metaOptionsEntity = metaOptions
+ //   ? this.metaOptionsRepository.create(metaOptions)
+ //   : undefined;
 
- //  if (createPostDto.metaOptions) {
- //   metaOptions = this.metaOptionsRepository.create({
- //    metaValue: createPostDto.metaOptions.metaValue,
- //   });
-
- //   metaOptions = await this.metaOptionsRepository.save(metaOptions);
+ //  if (metaOptionsEntity) {
+ //   await this.metaOptionsRepository.save(metaOptionsEntity);
  //  }
 
- //  console.log(createPostDto, "service");
-
  //  let post = this.postsRepository.create({
- //   ...createPostDto,
- //   author: { id: author?.id } as User
+ //   ...postData,
+ //   author,
+ //   metaOptions: metaOptionsEntity,
+ //   tags
  //  });
-
 
  //  return await this.postsRepository.save(post);
  // }
-
- public async create(createPostDto: CreatePostDto) {
-  const author = await this.usersService.findOneById(createPostDto.authorId);
-  const tags = await this.tagsService.findMultipleTags(createPostDto.tags || []);
-  if (!author) throw new Error("Author not found");
-
-  const { authorId, metaOptions, ...postData } = createPostDto;
-
-  let metaOptionsEntity = metaOptions
-   ? this.metaOptionsRepository.create(metaOptions)
-   : undefined;
-
-  if (metaOptionsEntity) {
-   await this.metaOptionsRepository.save(metaOptionsEntity);
-  }
-
-  let post = this.postsRepository.create({
-   ...postData,
-   author,
-   metaOptions: metaOptionsEntity,
-   tags
-  });
-
-  return await this.postsRepository.save(post);
- }
 
  /**
  *Update a post
@@ -143,15 +131,15 @@ export class PostsService {
  *Finding all posts
  * 
  */
- public async findAllPosts(userId: number) {
-  let posts = await this.postsRepository.find({
-   relations: {
-    metaOptions: true,
-    author: true,
-    tags: true
-   }
-  })
-  console.log(posts);
+ public async findAllPosts(postQuery: GetPostsDto, userId: string): Promise<Paginated<Post>> {
+  const page = postQuery.page ?? 1;
+  const limit = postQuery.limit ?? 10;
+
+
+  let posts = await this.paginationProvider.paginateQuery({
+   limit: postQuery.limit,
+   page: postQuery.page
+  }, this.postsRepository)
   return posts
  }
 

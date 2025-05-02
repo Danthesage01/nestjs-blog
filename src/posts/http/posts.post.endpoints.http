@@ -1,9 +1,13 @@
+
+
+
 POST http://localhost:6500/posts
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJlbWFpbCI6ImpvaG4xQGRvZS5jb20iLCJpYXQiOjE3NDQzNzk0MDMsImV4cCI6MTc0NDM4MzAwMywiYXVkIjoibG9jYWxob3N0OjY1MDAiLCJpc3MiOiJsb2NhbGhvc3Q6NjUwMCJ9.jmjCSs5GBgxUSU-qe0xj0NC4m3eXuH5Gb0-W5KX9Gjw
 {
- "title": "Title type and javascript",
+ "title": "Title type and javascript 10",
  "postType": "post",
- "slug": "new-with-nestjs-t6",
+ "slug": "new-with-nestjs-10",
  "status": "draft",
  "content": "test content",
  "schema": "{\r\n    \"@context\": \"https:\/\/schema.org\",\r\n    \"@type\": \"Person\"\r\n  }",
@@ -13,7 +17,6 @@ Content-Type: application/json
     {
       "metaValue": "{\"sidebarEnabled\": true, \"footerActive\": true}"
     },
-  "authorId": 1,
-  "tags":[1, 2]
+  "tags":[2, 5]
 }
 

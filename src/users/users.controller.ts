@@ -3,7 +3,11 @@ import {
  Controller, Get, Post, Patch,
  Put, Delete, Param, Query, Body,
 
- ParseIntPipe, DefaultValuePipe, ValidationPipe
+ ParseIntPipe, DefaultValuePipe, ValidationPipe,
+ UseGuards,
+ SetMetadata,
+ UseInterceptors,
+ ClassSerializerInterceptor
 } from '@nestjs/common';
 import { Request } from 'express';
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -11,6 +15,9 @@ import { GetUsersParamDto } from './dtos/get-users-param.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateManyUsersDto } from './dtos/create-many-users.dto';
+import { AccessTokenGuard } from 'src/auth/guards/access-token/access-token.guard';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 
 
 
@@ -54,6 +61,9 @@ export class UsersController {
   description: 'User created successfully'
  })
  @Post()
+ // @SetMetadata('authType', 'None')
+ @Auth(AuthType.None)
+ @UseInterceptors(ClassSerializerInterceptor)
  public createUsers(@Body() createUserDto: CreateUserDto) {
   return this.usersService.createUser(createUserDto)
  }
@@ -63,6 +73,7 @@ export class UsersController {
   status: 201,
   description: 'Users created successfully'
  })
+ // @UseGuards(AccessTokenGuard)
  @Post('create-many')
  public createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
   return this.usersService.createMany(createManyUsersDto)

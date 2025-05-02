@@ -1,1 +1,14 @@
+{{
+ //pre request scripts
+ const date = new Date();
+ global.startDate = date.toISOString();
+ global.endDate = date.toISOString();
+}}
+{{
+ console.log("Start Date:", global.startDate);
+ console.log("End Date:", global.endDate);
+}}
+
 GET http://localhost:6500/posts/
+?limit=1
+&page=4

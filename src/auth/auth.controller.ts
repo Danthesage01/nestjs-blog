@@ -1,12 +1,32 @@
-import { Controller, Get } from '@nestjs/common';
+import { RefreshTokenDto } from './dtos/refresh-token.dto';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './providers/auth.service';
+import { SignInDto } from './dtos/signin.dto';
+import { Auth } from './decorators/auth.decorator';
+import { AuthType } from './enums/auth-type.enum';
 
 @Controller('auth')
 export class AuthController {
- constructor(private readonly authService: AuthService) { }
+ constructor(
+  /**
+   * Injecting Auth Service
+   */
+  private readonly authService: AuthService
+ ) { }
 
- @Get()
- public getAuth() {
-  return this.authService.login("email", "password", "1234")
+
+ @Post('sign-in')
+ @HttpCode(HttpStatus.OK)
+ @Auth(AuthType.None)
+ public async signIn(@Body() signInDto: SignInDto) {
+  return this.authService.signIn(signInDto)
  }
+
+ @Post('refresh-tokens')
+ @HttpCode(HttpStatus.OK)
+ @Auth(AuthType.None)
+ public async refreshTokens(@Body() refreshTokenDto: RefreshTokenDto) {
+  return this.authService.refreshTokens(refreshTokenDto)
+ }
+
 }

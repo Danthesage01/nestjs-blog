@@ -1,7 +1,8 @@
 POST http://localhost:6500/tags
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJlbWFpbCI6ImpvaG4xQGRvZS5jb20iLCJpYXQiOjE3NDQzNzk0MDMsImV4cCI6MTc0NDM4MzAwMywiYXVkIjoibG9jYWxob3N0OjY1MDAiLCJpc3MiOiJsb2NhbGhvc3Q6NjUwMCJ9.jmjCSs5GBgxUSU-qe0xj0NC4m3eXuH5Gb0-W5KX9Gjw
 {
- "name": "devops",
- "slug": "devops",
- "description": "All posts devops"
+ "name": "javascript",
+ "slug": "javascript",
+ "description": "All posts javascript"
 }

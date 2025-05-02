@@ -1,3 +1,6 @@
+import { CreateGoogleUserProvider } from './create-google-user.provider';
+import { FindOneByGoogleIdProviderService } from './find-one-by-google-id.provider.service';
+import { FindOneUserByEmailProvider } from './find-one-user-by-email.provider';
 import { UsersCreateManyProvider } from './users-create-many.provider';
 import { CreateUserDto } from './../dtos/create-user.dto';
 import { BadRequestException, forwardRef, HttpException, HttpStatus, Inject, Injectable, RequestTimeoutException } from "@nestjs/common";
@@ -10,6 +13,8 @@ import { ConfigService, ConfigType } from "@nestjs/config";
 import profileConfig from "../config/profile.config";
 import { error } from "console";
 import { CreateManyUsersDto } from '../dtos/create-many-users.dto';
+import { CreateUserProvider } from './create-user.provider';
+import { GoogleUser } from '../interfaces/google-user.interface';
 
 
 /**
@@ -23,59 +28,47 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-    @Inject(forwardRef(() => AuthService))
-    private readonly authService: AuthService,
-    /**
-     * Injecting config service
-      */
-    private readonly configService: ConfigService,
+    // @Inject(forwardRef(() => AuthService))
+    // private readonly authService: AuthService,
+    // /**
+    //  * Injecting config service
+    //   */
+    // private readonly configService: ConfigService,
 
-    @Inject(profileConfig.KEY)
-    private readonly profileConfiguration: ConfigType<typeof profileConfig>,
+    // @Inject(profileConfig.KEY)
+    // private readonly profileConfiguration: ConfigType<typeof profileConfig>,
 
-    // Inject Datasource
-    private readonly datasource: DataSource,
+    // // Inject Datasource
+    // private readonly datasource: DataSource,
 
     /**
     * Injecting user create many providers
      */
-    private readonly userCreateManyProvider: UsersCreateManyProvider
+    private readonly userCreateManyProvider: UsersCreateManyProvider,
+    /**
+    * Injecting create user provider
+     */
+    private readonly createUserProvider: CreateUserProvider,
+    /**
+    * Injecting find one user by email provider
+     */
+    private readonly findOneUserByEmailProvider: FindOneUserByEmailProvider,
+
+    /**
+     * Inject findOneByGoogleIdProvider
+     */
+    private readonly findOneByGoogleIdProviderService: FindOneByGoogleIdProviderService,
+    /**
+     * Inject createGoogleUserProvider
+     */
+    private readonly createGoogleUserProvider: CreateGoogleUserProvider,
   ) { }
 
   /**
   * The method to create a user from the database
   */
   public async createUser(createUserDto: CreateUserDto) {
-
-    let existingUser: User | null;
-    try {
-      // Check is user exists with same email
-      existingUser = await this.usersRepository.findOne({
-        where: {
-          email: createUserDto.email
-        }
-      })
-
-    } catch (error) {
-      throw new RequestTimeoutException('Unable to process your request at the moment please try later', {
-        description: 'Error connecting to the database'
-      })
-    }
-    // Handle exception
-    if (existingUser) {
-      throw new BadRequestException('User already exist')
-    }
-    // Create a new user
-    let newUser = this.usersRepository.create(createUserDto)
-    try {
-      newUser = await this.usersRepository.save(newUser)
-    } catch (error) {
-      throw new RequestTimeoutException('Unable to process your request at the moment please try later', {
-        description: 'Error connecting to the database'
-      })
-    }
-
-    return newUser
+    return this.createUserProvider.createUser(createUserDto)
   }
 
   /**
@@ -134,11 +127,25 @@ export class UsersService {
     }
     return user
   }
+  /**
+ * Find a user by email from the database
+ */
+  public async findOneByEmail(email: string) {
+    return await this.findOneUserByEmailProvider.findOneByEmail(email)
+  }
 
   /**
    * Create many user - Transaction in nestjs
    */
   public async createMany(createManyUsersDto: CreateManyUsersDto) {
     return await this.userCreateManyProvider.createMany(createManyUsersDto)
+  }
+
+
+  public async findOneByGoogleId(googleId: string) {
+    return await this.findOneByGoogleIdProviderService.findOneByGoogleId(googleId)
+  }
+  public async createGoogleUser(googleUser: GoogleUser) {
+    return await this.createGoogleUserProvider.createGoogleUser(googleUser)
   }
 }
